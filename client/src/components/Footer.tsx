@@ -1,27 +1,48 @@
 import React from 'react';
-import { Bot, Heart } from 'lucide-react';
+import { Rocket, BookOpen } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const year = new Date().getFullYear();
-  
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          
-          <div className="flex items-center gap-2">
-            <div className="bg-blue-500 p-1.5 rounded-lg">
-              <Bot className="text-white w-5 h-5" />
+    <footer className="bg-slate-900 text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col items-center text-center gap-6">
+
+          {/* Logo */}
+          <div className="flex items-center gap-2.5">
+            <div className="relative w-8 h-8 flex items-end justify-center">
+              <BookOpen className="w-6 h-6 text-blue-400 absolute bottom-0" strokeWidth={2.5} />
+              <Rocket className="w-5 h-5 text-orange-400 absolute -top-1" strokeWidth={2.5} />
             </div>
-            <span className="text-xl font-bold text-white">
-              Kidrove<span className="text-blue-500">.</span>
+            <span className="text-2xl font-black tracking-tight text-white">
+              Launchpad
             </span>
           </div>
-          
-          <p className="text-sm text-gray-400 flex items-center gap-1">
-            &copy; {year} Kidrove Workshops. Made with <Heart className="w-4 h-4 text-red-500" /> for the future.
+
+          {/* Tagline */}
+          <p className="text-slate-400 font-medium max-w-md leading-relaxed">
+            Helping curious young minds learn through hands-on experiences, creativity, and technology.
           </p>
-          
+
+          {/* Quick links */}
+          <div className="flex gap-8 text-sm font-bold text-slate-400 flex-wrap justify-center mt-2">
+            {['Programs', 'Workshops', 'FAQ', 'Contact'].map((link) => (
+              <a
+                key={link}
+                href="#"
+                className="hover:text-white transition-colors"
+              >
+                {link}
+              </a>
+            ))}
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-slate-800 w-full my-4" />
+
+          {/* Copyright */}
+          <p className="text-slate-500 text-sm font-semibold">
+            © {new Date().getFullYear()} Launchpad Education Inc. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

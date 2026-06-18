@@ -1,56 +1,54 @@
 import React from 'react';
-import { Calendar, Clock, MonitorPlay, IndianRupee, Users } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+
+interface DetailCard {
+  emoji: string;
+  label: string;
+  value: string;
+  bg: string;
+  border: string;
+}
+
+const cards: DetailCard[] = [
+  { emoji: '📅', label: 'Start Date',  value: 'July 15, 2026',  bg: 'bg-blue-50',   border: 'border-blue-200' },
+  { emoji: '⏳', label: 'Duration',   value: '4 Weeks',         bg: 'bg-purple-50',  border: 'border-purple-200' },
+  { emoji: '💻', label: 'Mode',       value: 'Online (Live)',   bg: 'bg-cyan-50',    border: 'border-cyan-200' },
+  { emoji: '🧒', label: 'Age Group',  value: '8 – 14 Years',   bg: 'bg-yellow-50',  border: 'border-yellow-200' },
+  { emoji: '💰', label: 'Fee',        value: '₹2,999',          bg: 'bg-green-50',   border: 'border-green-200' },
+  { emoji: '🏅', label: 'Certificate', value: 'Yes, Included',  bg: 'bg-orange-50',  border: 'border-orange-200' },
+];
 
 const WorkshopDetails: React.FC = () => {
-  const details = [
-    {
-      icon: <Users className="w-8 h-8 text-blue-500" />,
-      label: "Age Group",
-      value: "8–14 Years",
-      bgColor: "bg-blue-50"
-    },
-    {
-      icon: <Clock className="w-8 h-8 text-orange-500" />,
-      label: "Duration",
-      value: "4 Weeks",
-      bgColor: "bg-orange-50"
-    },
-    {
-      icon: <MonitorPlay className="w-8 h-8 text-green-500" />,
-      label: "Mode",
-      value: "Online Interactive",
-      bgColor: "bg-green-50"
-    },
-    {
-      icon: <IndianRupee className="w-8 h-8 text-purple-500" />,
-      label: "Fee",
-      value: "₹2,999",
-      bgColor: "bg-purple-50"
-    },
-    {
-      icon: <Calendar className="w-8 h-8 text-red-500" />,
-      label: "Start Date",
-      value: "15 July 2026",
-      bgColor: "bg-red-50"
-    }
-  ];
+  const ref = useScrollReveal();
 
   return (
-    <section id="details" className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Workshop <span className="text-blue-500">Details</span></h2>
-          <p className="text-xl text-gray-600">Everything you need to know about our upcoming summer camp.</p>
+    <section id="details" className="py-20 bg-gradient-to-b from-slate-50 to-blue-50">
+      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6">
+
+        {/* Section header */}
+        <div className="reveal text-center mb-12">
+          <span className="inline-block bg-blue-100 text-blue-600 font-bold px-4 py-1.5 rounded-full text-sm mb-4">
+            📋 Workshop at a Glance
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-800">
+            Everything You Need to <span className="gradient-text">Know</span>
+          </h2>
+          <p className="mt-3 text-slate-500 font-semibold max-w-xl mx-auto">
+            Clear, upfront details so kids and parents can plan ahead.
+          </p>
         </div>
-        
-        <div className="flex flex-wrap justify-center gap-6">
-          {details.map((item, index) => (
-            <div key={index} className="w-full sm:w-64 bg-white rounded-3xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow transform hover:-translate-y-1">
-              <div className={`${item.bgColor} w-16 h-16 rounded-2xl flex items-center justify-center mb-6`}>
-                {item.icon}
-              </div>
-              <h3 className="text-gray-500 font-semibold mb-1 uppercase tracking-wider text-sm">{item.label}</h3>
-              <p className="text-2xl font-bold text-gray-900">{item.value}</p>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              className={`reveal ${card.bg} border-2 ${card.border} rounded-3xl p-5 sm:p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 shadow-sm hover:shadow-md`}
+              style={{ transitionDelay: `${i * 60}ms` }}
+            >
+              <span className="text-4xl mb-3">{card.emoji}</span>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">{card.label}</p>
+              <p className="text-lg sm:text-xl font-black text-slate-800">{card.value}</p>
             </div>
           ))}
         </div>

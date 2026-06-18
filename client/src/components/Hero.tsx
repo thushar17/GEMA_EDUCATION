@@ -1,69 +1,107 @@
 import React from 'react';
-import { Link } from 'react-scroll';
-import { Cpu, Rocket, Star, Sparkles } from 'lucide-react';
+import { Bot, Sparkles, Cpu, Zap } from 'lucide-react';
+import bgVideo from '../assets/bg vdo.mp4';
 
 const Hero: React.FC = () => {
+  const scrollToRegister = () => {
+    document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToOutcomes = () => {
+    document.getElementById('outcomes')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section id="hero" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-blue-50 to-white">
-      {/* Decorative background elements */}
-      <div className="absolute top-20 left-10 text-yellow-400 animate-bounce" style={{ animationDuration: '3s' }}>
-        <Star size={40} fill="currentColor" />
+    <section id="hero" className="relative min-h-screen pt-24 pb-16 lg:pt-32 lg:pb-20 overflow-hidden bg-[#F8FAFC] flex items-center">
+
+      {/* ── Background Blobs & Floating Decorative Elements ── */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-100/50 rounded-l-full blur-3xl opacity-60 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-purple-100/50 rounded-tr-full blur-3xl opacity-60 pointer-events-none" />
+
+      {/* Floating Icons */}
+      <div className="absolute top-32 left-10 text-cyan-300 animate-bounce opacity-70" style={{ animationDuration: '4s' }}>
+        <Bot size={48} strokeWidth={1.5} />
       </div>
-      <div className="absolute bottom-20 right-10 text-blue-300 animate-pulse">
-        <Cpu size={60} />
+      <div className="absolute bottom-32 right-10 lg:right-auto lg:left-1/2 text-orange-300 animate-pulse opacity-60" style={{ animationDuration: '5s' }}>
+        <Cpu size={56} strokeWidth={1.5} />
       </div>
-      <div className="absolute top-40 right-20 text-orange-400 animate-bounce" style={{ animationDuration: '4s' }}>
-        <Sparkles size={30} />
+      <div className="absolute top-40 right-20 text-yellow-300 animate-bounce opacity-80" style={{ animationDuration: '3.5s' }}>
+        <Sparkles size={32} />
+      </div>
+      <div className="absolute bottom-40 left-20 text-purple-300 opacity-50" style={{ animation: 'bounce-slow 6s infinite' }}>
+        <Zap size={40} strokeWidth={1.5} />
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          
-          <div className="w-full lg:w-1/2 space-y-8 text-center lg:text-left">
-            <div className="inline-flex gap-2 flex-wrap justify-center lg:justify-start">
-              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Age 8–14 Years</span>
-              <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">4 Weeks</span>
-              <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Online</span>
-              <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold">₹2,999</span>
-            </div>
-            
-            <h1 className="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-              Unleash Your Child's <br className="hidden lg:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600">
-                Inner Inventor
-              </span>
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+          {/* ── Left Content (Text) ── */}
+          <div className="w-full lg:w-2/5 flex flex-col items-center lg:items-start text-center lg:text-left mt-8 lg:mt-0">
+
+            {/* Headline */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-slate-800 leading-[1.1] mb-6 tracking-tight">
+              What If Your Child Built Their First <span className="text-blue-600">Robot</span> This Summer?
             </h1>
-            
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
-              Join our exclusive AI & Robotics Summer Workshop! A fun, interactive, and hands-on experience designed to spark curiosity and build future-ready skills in a playful environment.
+
+            {/* Subheadline */}
+            <p className="text-lg sm:text-xl text-slate-600 font-semibold max-w-lg mb-10 leading-relaxed">
+              A fun 4-week online workshop where kids learn robotics, coding, and AI by creating real projects.
             </p>
-            
-            <div className="pt-4">
-              <Link to="register" smooth={true} duration={500} className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-lg font-bold px-8 py-4 rounded-full shadow-xl hover:shadow-blue-500/40 transition-all transform hover:-translate-y-1 cursor-pointer">
-                Secure Your Spot Now
-                <Rocket className="w-5 h-5" />
-              </Link>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <button
+                onClick={scrollToRegister}
+                className="bg-[#8B5CF6] hover:bg-[#00c2ea] text-white font-black px-8 py-4 rounded-full shadow-xl shadow-[#00D4FF]/20 transition-transform hover:-translate-y-1 text-lg flex justify-center items-center gap-2"
+              >
+                Reserve Your Seat
+              </button>
+              <button
+                onClick={scrollToOutcomes}
+                className="bg-white border-2 border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-bold px-8 py-4 rounded-full transition-transform hover:-translate-y-1 text-lg flex justify-center items-center"
+              >
+                See Projects
+              </button>
             </div>
           </div>
-          
-          <div className="w-full lg:w-1/2 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-blue-100 aspect-video flex items-center justify-center">
-              {/* Fallback illustration since we don't have images */}
-              <div className="text-center p-8">
-                <div className="flex justify-center mb-6">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-20" style={{ animationDuration: '2s' }}></div>
-                    <div className="bg-gradient-to-br from-blue-400 to-indigo-600 p-6 rounded-full relative z-10 shadow-lg">
-                      <Cpu className="w-20 h-20 text-white" />
-                    </div>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-blue-800">Build Your First Robot!</h3>
-                <p className="text-blue-600 mt-2">Interactive online sessions</p>
+
+          {/* ── Right Content (Video) ── */}
+          <div className="w-full lg:w-3/5 relative mt-8 lg:mt-0">
+
+            {/* Playful curved container for the video */}
+            <div className="relative aspect-square lg:aspect-[4/3] rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white bg-slate-200 transform lg:-rotate-2 hover:rotate-0 transition-transform duration-500">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover scale-105"
+                src={bgVideo}
+              />
+            </div>
+
+            {/* Fun overlay card */}
+            <div className="absolute -bottom-6 -left-4 lg:-left-12 bg-white px-6 py-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce" style={{ animationDuration: '3s' }}>
+              <div className="bg-yellow-100 p-2 rounded-full">
+                <Sparkles className="w-6 h-6 text-yellow-500" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 font-bold leading-none">Learning</p>
+                <p className="text-lg text-slate-800 font-black leading-tight">Made Fun!</p>
               </div>
             </div>
+
+            {/* Fun dot pattern behind the video */}
+            <div className="absolute -top-8 -right-8 w-32 h-32 text-blue-200 -z-10">
+              <svg viewBox="0 0 100 100" fill="currentColor">
+                <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="2"></circle>
+                </pattern>
+                <rect width="100" height="100" fill="url(#dots)"></rect>
+              </svg>
+            </div>
+
           </div>
-          
         </div>
       </div>
     </section>

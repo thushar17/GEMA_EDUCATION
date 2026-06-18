@@ -1,42 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
-import { Bot } from 'lucide-react';
+import { Rocket, BookOpen } from 'lucide-react';
 
 const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Hide if scrolling down and past the navbar height, else show
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        <div className="flex items-center gap-2 cursor-pointer">
-          <div className="bg-blue-500 p-2 rounded-xl">
-            <Bot className="text-white w-6 h-6" />
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+
+        {/* Logo */}
+        <div className="flex items-center gap-2.5 cursor-pointer">
+          <div className="relative w-8 h-8 flex items-end justify-center">
+            <BookOpen className="w-6 h-6 text-blue-600 absolute bottom-0" strokeWidth={2.5} />
+            <Rocket className="w-5 h-5 text-orange-500 absolute -top-1" strokeWidth={2.5} />
           </div>
-          <span className={`text-2xl font-bold ${isScrolled ? 'text-gray-800' : 'text-gray-800'}`}>
-            Kidrove<span className="text-blue-500">.</span>
+          <span className="text-xl font-black text-slate-800 tracking-tight">
+            Launchpad
           </span>
         </div>
-        
-        <div className="hidden md:flex items-center space-x-8">
-          <Link to="hero" smooth={true} duration={500} className="text-gray-600 hover:text-blue-500 font-medium cursor-pointer transition-colors">Home</Link>
-          <Link to="details" smooth={true} duration={500} className="text-gray-600 hover:text-blue-500 font-medium cursor-pointer transition-colors">Details</Link>
-          <Link to="outcomes" smooth={true} duration={500} className="text-gray-600 hover:text-blue-500 font-medium cursor-pointer transition-colors">Outcomes</Link>
-          <Link to="faq" smooth={true} duration={500} className="text-gray-600 hover:text-blue-500 font-medium cursor-pointer transition-colors">FAQ</Link>
-        </div>
 
-        <Link to="register" smooth={true} duration={500} className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full font-semibold transition-all shadow-lg hover:shadow-blue-500/30 cursor-pointer transform hover:-translate-y-0.5">
+        {/* Nav links — hidden on mobile */}
+        <nav className="hidden md:flex items-center gap-8">
+          {[
+            { to: 'programs', label: 'Programs' },
+            { to: 'workshops', label: 'Workshops' },
+            { to: 'about', label: 'About' },
+            { to: 'faq', label: 'FAQ' },
+          ].map(({ to, label }) => (
+            <a
+              key={to}
+              href={`#${to}`}
+              className="text-slate-600 hover:text-blue-600 font-bold text-sm transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        {/* CTA */}
+        <a
+          href="#register"
+          className="bg-[#8B5CF6] hover:bg-orange-400 text-white font-bold px-5 py-2 rounded-full text-sm shadow-md hover:shadow-orange-400/40 transition-all cursor-pointer"
+        >
           Enroll Now
-        </Link>
+        </a>
       </div>
-    </nav>
+    </header>
   );
 };
 
