@@ -1,8 +1,6 @@
-import React from 'react';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import WorkshopDetails from './components/WorkshopDetails';
-import LearningOutcomes from './components/LearningOutcomes';
 import LearningJourney from './components/LearningJourney';
 import Projects from './components/Projects';
 import FAQ from './components/FAQ';

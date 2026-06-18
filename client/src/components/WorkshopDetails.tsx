@@ -10,12 +10,12 @@ interface DetailCard {
 }
 
 const cards: DetailCard[] = [
-  { emoji: '📅', label: 'Start Date',  value: 'July 15, 2026',  bg: 'bg-blue-50',   border: 'border-blue-200' },
-  { emoji: '⏳', label: 'Duration',   value: '4 Weeks',         bg: 'bg-purple-50',  border: 'border-purple-200' },
-  { emoji: '💻', label: 'Mode',       value: 'Online (Live)',   bg: 'bg-cyan-50',    border: 'border-cyan-200' },
-  { emoji: '🧒', label: 'Age Group',  value: '8 – 14 Years',   bg: 'bg-yellow-50',  border: 'border-yellow-200' },
-  { emoji: '💰', label: 'Fee',        value: '₹2,999',          bg: 'bg-green-50',   border: 'border-green-200' },
-  { emoji: '🏅', label: 'Certificate', value: 'Yes, Included',  bg: 'bg-orange-50',  border: 'border-orange-200' },
+  { emoji: '📅', label: 'Start Date', value: 'July 15, 2026', bg: 'bg-blue-50', border: 'border-blue-200' },
+  { emoji: '⏳', label: 'Duration', value: '4 Weeks', bg: 'bg-purple-50', border: 'border-purple-200' },
+  { emoji: '💻', label: 'Mode', value: 'Online (Live)', bg: 'bg-cyan-50', border: 'border-cyan-200' },
+  { emoji: '🧒', label: 'Age Group', value: '8 – 14 Years', bg: 'bg-yellow-50', border: 'border-yellow-200' },
+  { emoji: '💰', label: 'Fee', value: '₹2,999', bg: 'bg-green-50', border: 'border-green-200' },
+  { emoji: '🏅', label: 'Certificate', value: 'Yes, Included', bg: 'bg-orange-50', border: 'border-orange-200' },
 ];
 
 const WorkshopDetails: React.FC = () => {
