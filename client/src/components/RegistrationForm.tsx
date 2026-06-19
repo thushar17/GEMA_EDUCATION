@@ -68,7 +68,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ compact = false }) 
 
     try {
       console.log('Submitting:', formData);
-      await axios.post('/api/enquiry', formData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/enquiry`, formData);
       setSuccess(true);
       setFormData({ name: '', email: '', phone: '' });
     } catch (error: unknown) {
