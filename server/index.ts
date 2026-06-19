@@ -23,7 +23,7 @@ app.use(express.json());
 
 // Route
 app.get('/api/enquiry', async (req, res) => {
-  console.log("server started")
+  res.json("server started")
 })
 app.post('/api/enquiry', async (req, res) => {
   try {
