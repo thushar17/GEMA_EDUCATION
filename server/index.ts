@@ -13,7 +13,11 @@ const PORT = process.env.PORT || 5000;
 connectDb();
 
 app.use(
-  cors()
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:5173", "https://gema-education-867n.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
 );
 
 app.use(express.json());
