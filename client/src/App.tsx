@@ -10,27 +10,17 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="min-h-screen flex flex-col" style={{ fontFamily: "'Nunito', sans-serif" }}>
-      {/* Fixed navigation */}
       <Navbar />
 
       <main className="flex-grow">
-        {/* 1. Hero — full-screen video background */}
-        <Hero />
 
-        {/* 2. Learning Journey Timeline */}
+        <Hero />
         <LearningJourney />
 
-        {/* 3. Amazing Projects Grid */}
         <Projects />
-
-        {/* 4. Registration Form Section */}
         <RegisterSection />
-
-        {/* 5. FAQ & Support Hub */}
         <FAQ />
       </main>
-
-      {/* Dark footer */}
       <Footer />
     </div>
   );

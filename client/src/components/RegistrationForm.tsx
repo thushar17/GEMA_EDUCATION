@@ -68,7 +68,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ compact = false }) 
 
     try {
       console.log('Submitting:', formData);
-      await axios.post('http://localhost:8000/api/enquiry', formData);
+      await axios.post('/api/enquiry', formData);
       setSuccess(true);
       setFormData({ name: '', email: '', phone: '' });
     } catch (error: unknown) {
