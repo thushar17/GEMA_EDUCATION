@@ -13,11 +13,7 @@ const PORT = process.env.PORT || 5000;
 connectDb();
 
 app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
+  cors()
 );
 
 app.use(express.json());
@@ -26,6 +22,9 @@ app.use(express.json());
 
 
 // Route
+app.get('/api/enquiry', async (req, res) => {
+  console.log("server started")
+})
 app.post('/api/enquiry', async (req, res) => {
   try {
     // Validate request body
