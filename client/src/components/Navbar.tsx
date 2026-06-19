@@ -41,9 +41,9 @@ const Navbar: React.FC = () => {
         {/* Nav links — hidden on mobile */}
         <nav className="hidden md:flex items-center gap-8">
           {[
-            { to: 'programs', label: 'Programs' },
-            { to: 'workshops', label: 'Workshops' },
-            { to: 'about', label: 'About' },
+            { to: 'details', label: 'Details' },
+            { to: 'outcomes', label: 'Outcomes' },
+            { to: 'projects', label: 'Projects' },
             { to: 'faq', label: 'FAQ' },
           ].map(({ to, label }) => (
             <a

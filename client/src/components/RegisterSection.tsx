@@ -1,8 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import RegistrationForm from './RegistrationForm';
 import { CheckCircle2 } from 'lucide-react';
 
 const RegisterSection: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const targetDate = new Date('2026-07-15T00:00:00');
+
+    const updateTimer = () => {
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="register" className="py-24 bg-white relative overflow-hidden">
 
@@ -49,7 +76,27 @@ const RegisterSection: React.FC = () => {
 
             <div className="relative z-10 mt-12 bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
               <p className="text-sm font-bold text-cyan-400 mb-1 uppercase tracking-wider">Next Cohort</p>
-              <p className="text-xl font-black text-white">Starts July 15, 2026</p>
+              <p className="text-xl font-black text-white mb-4">Starts July 20, 2026</p>
+
+              {/* Countdown Timer */}
+              <div className="flex gap-3">
+                <div className="flex flex-col items-center bg-white/10 p-2 rounded-lg min-w-[60px]">
+                  <span className="text-xl font-black text-white">{timeLeft.days}</span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase">Days</span>
+                </div>
+                <div className="flex flex-col items-center bg-white/10 p-2 rounded-lg min-w-[60px]">
+                  <span className="text-xl font-black text-white">{timeLeft.hours}</span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase">Hours</span>
+                </div>
+                <div className="flex flex-col items-center bg-white/10 p-2 rounded-lg min-w-[60px]">
+                  <span className="text-xl font-black text-white">{timeLeft.minutes}</span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase">Mins</span>
+                </div>
+                <div className="flex flex-col items-center bg-white/10 p-2 rounded-lg min-w-[60px]">
+                  <span className="text-xl font-black text-white">{timeLeft.seconds}</span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase">Secs</span>
+                </div>
+              </div>
             </div>
           </div>
 

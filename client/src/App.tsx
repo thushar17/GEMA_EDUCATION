@@ -1,4 +1,3 @@
-
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LearningJourney from './components/LearningJourney';
@@ -13,10 +12,8 @@ function App() {
       <Navbar />
 
       <main className="flex-grow">
-
         <Hero />
         <LearningJourney />
-
         <Projects />
         <RegisterSection />
         <FAQ />

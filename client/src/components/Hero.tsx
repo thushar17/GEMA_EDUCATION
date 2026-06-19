@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bot, Sparkles, Cpu, Zap } from 'lucide-react';
-import bgVideo from '../assets/bg vdo.mp4';
 
 const Hero: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const targetDate = new Date('2026-07-15T00:00:00');
+
+    const updateTimer = () => {
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToRegister = () => {
     document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -39,26 +65,46 @@ const Hero: React.FC = () => {
           <div className="w-full lg:w-2/5 flex flex-col items-center lg:items-start text-center lg:text-left mt-8 lg:mt-0">
 
             {/* Headline */}
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-slate-800 leading-[1.1] mb-6 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 leading-[1.1] mb-4 tracking-tight">
               What If Your Child Built Their First <span className="text-blue-600">Robot</span> This Summer?
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg sm:text-xl text-slate-600 font-semibold max-w-lg mb-10 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 font-semibold max-w-lg mb-6 leading-relaxed">
               A fun 4-week online workshop where kids learn robotics, coding, and AI by creating real projects.
             </p>
 
+            {/* Countdown Timer */}
+            <div className="flex gap-4 mb-6">
+              <div className="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100 min-w-[70px]">
+                <span className="text-xl sm:text-2xl font-black text-blue-600">{timeLeft.days}</span>
+                <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Days</span>
+              </div>
+              <div className="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100 min-w-[70px]">
+                <span className="text-xl sm:text-2xl font-black text-blue-600">{timeLeft.hours}</span>
+                <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Hours</span>
+              </div>
+              <div className="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100 min-w-[70px]">
+                <span className="text-xl sm:text-2xl font-black text-blue-600">{timeLeft.minutes}</span>
+                <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Mins</span>
+              </div>
+              <div className="flex flex-col items-center bg-white p-3 rounded-xl shadow-sm border border-slate-100 min-w-[70px]">
+                <span className="text-xl sm:text-2xl font-black text-blue-600">{timeLeft.seconds}</span>
+                <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Secs</span>
+              </div>
+            </div>
+
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <button
                 onClick={scrollToRegister}
-                className="bg-[#8B5CF6] hover:bg-[#00c2ea] text-white font-black px-8 py-4 rounded-full shadow-xl shadow-[#00D4FF]/20 transition-transform hover:-translate-y-1 text-lg flex justify-center items-center gap-2"
+                className="bg-[#8B5CF6] hover:bg-[#00c2ea] text-white font-black px-6 py-3 rounded-full shadow-xl shadow-[#00D4FF]/20 transition-transform hover:-translate-y-1 text-base flex justify-center items-center gap-2"
               >
                 Reserve Your Seat
               </button>
               <button
                 onClick={scrollToOutcomes}
-                className="bg-white border-2 border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-bold px-8 py-4 rounded-full transition-transform hover:-translate-y-1 text-lg flex justify-center items-center"
+                className="bg-white border-2 border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 font-bold px-6 py-3 rounded-full transition-transform hover:-translate-y-1 text-base flex justify-center items-center"
               >
                 See Projects
               </button>
@@ -76,7 +122,7 @@ const Hero: React.FC = () => {
                 loop
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover scale-105"
-                src={bgVideo}
+                src="/bg_vdo.mp4"
               />
             </div>
 
